@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Multiplication Table </title>
+		<style>
+			table, tr, td {border: 1px black solid}
+		</style>
+	</head>
+	<body>
+		<p>[Enter a number between 2 and 10]</p>
+		<form> 
+			<input type="number" id="input1" min="2" max="10"> by <input type="number" id="input2" min="2" max="10">
+		</form>
+		<br>
+		<button onclick="tbl()"> Click here when ready! </button>
+		<br>
+		<br>
+		<div id="tablee"></div>
+	
+		<script>
+			function tbl(){
+				var num;
+				var c = 1;
+				var a = document.getElementById("input1").value;
+				var b = document.getElementById("input2").value;
+				var table = "<table>";
+				
+				if((a >= 2) && (a <= 10) && (b >= 2) && (b <= 10)) {
+					do {
+						var i = 1;
+						table += "<tr>";
+						do {
+							num = c * i;
+							table += "<td>" + num + "</td>";
+							i++;
+						}while (i <= b);
+						table += "</tr>";
+						c++;
+					} while (c <= a);
+					table += "</table>";
+					document.getElementById("tablee").innerHTML = table;
+					}
+				else{
+					document.getElementById("tablee").innerHTML = " ";
+					alert("Please enter numbers between 2 to 10");
+					}
+			}
+		</script>
+	</body>
+</html>
