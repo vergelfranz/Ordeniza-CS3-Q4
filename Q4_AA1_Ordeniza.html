@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Java </title>
+	</head>
+	<body>
+		<script>
+			 var code = prompt("Enter a genetic code");
+			 code = code.toUpperCase();
+			 var start = code.indexOf("AUG");
+		
+			 
+			 if (start == -1){
+				document.write("No starting codon found. Please try again!");
+			 }
+			 else{
+				var codon = [];
+				var el = code.slice(start, start+3);
+				codon.push(el);
+				var qty = Math.floor((code.length - start)/3); 
+				
+				var idnty = ["Phe", "Leu", "Ile", "Met", "Val", "Ser", "Pro", "Thr", "Ala", "Tyr", "STOP", "His", "Gln", "Asn", "Lys", "Asp", "Glu", "Cys", "Trp", "Arg", "Gly"];
+				var phe = ["UUU", "UUC"];
+				var leu = ["UUA", "UUG", "CUU", "CUA", "CUG"];
+				var ile = ["AUU", "AUC", "AUA"];
+				var met = ["AUG"];
+				var val = ["GUU", "GUC", "GUA", "GUG"];
+				var ser = ["UCU", "UCC", "UCA", "UCG", "AGU", "AGC"];
+				var pro = ["CCU", "CCC", "CCA", "CCG"];
+				var thr = ["ACU", "ACC", "ACA", "ACG"];
+				var ala = ["GCU", "GCC", "GCA", "GCG"];
+				var tyr = ["UAU", "UAC"];
+				var stop = ["UAA", "UAG", "UGA"];
+				var his = ["CAU", "CAC"];
+				var gln = ["CAA", "CAG"];
+				var asn = ["AAU", "AAC"];
+				var lys = ["AAA", "AAG"];
+				var asp = ["GAU", "GAC"];
+				var glu = ["GAA", "GAG"];
+				var cys = ["UGU", "UGC"];
+				var trp = ["UGG"];
+				var arg = ["CGU", "CGC", "CGA", "CGG", "AGA", "AGG"];
+				var gly = ["GGU", "GGC", "GGA", "GGG"];
+				var Aarray = [phe, leu, ile, met, val, ser, pro, thr, ala, tyr, stop, his, gln, asn, lys, asp, glu, cys, trp, arg, gly];
+				
+				document.write("[");
+				var grp;
+				
+				for (var i = 0; i < qty; i++){
+					start = start + 3;
+					if (codon[i] != stop[0] && codon[i] != stop[1] && codon[i] != stop[2]){
+						 if (i != qty-1){
+							document.write('"' + codon[i] + '",');
+							el = code.slice(start, start+3);
+							codon.push(el);
+						}
+						else {
+							document.write('"' + codon[i] + '",');
+							}
+						}
+					else if (codon[i] == stop[0] || codon[i] == stop[1] || codon[i] == stop[2] || i == qty-1){
+						document.write('"' + codon[i] + '"');
+						break;
+						}
+					}
+				document.write("]");
+			
+				
+				for (var j = 0; j < codon.length; j++){
+					for (var k = 0; k < idnty.length; k++){
+						grp = Aarray[k];
+						for (var n = 0; n < grp.length; n++){
+							if (codon[j] == grp[n]){
+								document.write("<br>" + codon[j] + " --> " + idnty[k]);
+								}
+							}
+						}
+					}
+				}
+
+				
+		</script>
+	</body>
+</html>
